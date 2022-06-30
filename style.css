@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    height: 98vh;
+    display: grid;
+    grid-template-rows: 0.8fr 4fr 0.5fr;
+    background-color: #E7E5E4;
+}
+
+.nav {
+    background-color: #FAFAF9;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 900;
+    font-size: 2em;
+}
+

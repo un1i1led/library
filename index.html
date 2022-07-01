@@ -8,13 +8,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600;900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>BookIt - Library App</title>
 </head>
 <body>
     <div class="nav">
         <p class="title">BookIt</p>
     </div>
-    <div class="main"></div>
-    <div class="footer"></div>
+    <div class="main">
+        <div class="add-button">
+            <button type="submit" id="add">Add book</button>
+        </div>
+        <div class="books">
+            <div class="book-card">
+                <p class="card-text">Piranesi</p>
+                <p class="card-text">Susana Collins</p>
+                <p class="card-text">297 pages</p>
+                <button class="not-read">Read</button>
+                <button>Remove</button>
+            </div>
+            <div class="book-card"></div>
+        </div>
+    </div>
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <form action="" class="popup-form">
+                <input type="text" name="title" id="book-title" placeholder="Title">
+                <input type="text" name="author" id="book-author" placeholder="Author">
+                <input type="text" name="pages" id="book-pages" placeholder="Pages">
+                <div class="label-read">
+                    <label for="read">Have you read it?</label>
+                    <input type="checkbox" name="read" id="book-read">
+                </div>
+                <button class="btn-add">Add</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

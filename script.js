@@ -11,12 +11,11 @@ let myLibrary = [];
 let i = 0;
 let bNumber = 0;
 
-function Book(title, author, numPages, read, bookNumber) {
+function Book(title, author, numPages, read) {
     this.title = title;
     this.author = author;
     this.numPages = numPages;
     this.read = read;
-    this.bookNumber = bookNumber;
 }
 
 Book.prototype.toggleRead = function() {
@@ -92,7 +91,9 @@ let displayBook = function() {
 
     buttonRemove.addEventListener('click', function() {
       myLibrary.splice(buttonRemove.dataset.id, 1);
-    })
+      books.removeChild(bookCard);
+      i -= 1;
+    });
   }
 }
 
@@ -102,18 +103,11 @@ let takeInfo = () => {
     checked = 'Read';
   }
 
-  if (myLibrary.length == 0){
-    bNumber = 0;
-  } else {
-    bNumber++;
-  }
-
   let newbook = new Book(
     document.querySelector('#book-title').value,
     document.querySelector('#book-author').value,
     document.querySelector('#book-pages').value,
-    checked,
-    bNumber
+    checked
   );
 
   myLibrary.push(newbook);

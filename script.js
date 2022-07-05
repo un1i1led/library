@@ -42,6 +42,7 @@ closepopup.addEventListener('click', function() {
 let displayBook = function() {
   for (i; i < myLibrary.length; i++){
     const bookCard = document.createElement('div');
+    bookCard.setAttribute('data-id', i);
     bookCard.className = 'book-card';
     books.appendChild(bookCard);
 
@@ -52,6 +53,7 @@ let displayBook = function() {
     const buttonRemove = document.createElement('button');
 
     buttonRead.setAttribute('data-id', i);
+    buttonRemove.setAttribute('data-id', i);
 
     textTitle.innerHTML = myLibrary[i].title;
     textAuthor.innerHTML = myLibrary[i].author;
@@ -86,6 +88,10 @@ let displayBook = function() {
         myLibrary[buttonRead.dataset.id].read = 'Read';
       }
       console.log(myLibrary);
+    })
+
+    buttonRemove.addEventListener('click', function() {
+      myLibrary.splice(buttonRemove.dataset.id, 1);
     })
   }
 }

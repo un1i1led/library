@@ -11,20 +11,38 @@ let myLibrary = [];
 let i = 0;
 let bNumber = 0;
 
-function Book(title, author, numPages, read) {
+// function Book(title, author, numPages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.numPages = numPages;
+//     this.read = read;
+// }
+
+class Book {
+  constructor(title, author, numPages, read){
     this.title = title;
     this.author = author;
     this.numPages = numPages;
     this.read = read;
+  }
+
+  toggleRead() {
+    if (this.read == true) {
+      return this.read = false;
+    } else if (this.read == false) {
+      return this.read = true
+    }
+  }
+  
 }
 
-Book.prototype.toggleRead = function() {
-  if (this.read == true) {
-    return this.read == false;
-  } else {
-    return this.read == true;
-  }
-}
+// Book.prototype.toggleRead = function() {
+//   if (this.read == true) {
+//     return this.read == false;
+//   } else {
+//     return this.read == true;
+//   }
+// }
 
 addBook.addEventListener('click', function() {
   document.querySelector('.bg-modal').style.display = 'flex';

@@ -86,7 +86,6 @@ let displayBook = function() {
         buttonRead.className = 'btn-rd read';
         myLibrary[buttonRead.dataset.id].read = 'Read';
       }
-      console.log(myLibrary);
     })
 
     buttonRemove.addEventListener('click', function() {
@@ -112,7 +111,6 @@ let takeInfo = () => {
 
   myLibrary.push(newbook);
   document.querySelector('.bg-modal').style.display = 'none';
-  console.log(myLibrary);
   displayBook();
 }
 

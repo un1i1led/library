@@ -6,6 +6,7 @@ const pagesInput = document.querySelector('#book-pages');
 const readInput = document.querySelector('#book-read');
 const btnAdd = document.querySelector('.btn-add');
 const books = document.querySelector('.books');
+const spanError = document.querySelector('span');
 
 let myLibrary = [];
 let i = 0;
@@ -36,13 +37,16 @@ class Book {
   
 }
 
-// Book.prototype.toggleRead = function() {
-//   if (this.read == true) {
-//     return this.read == false;
-//   } else {
-//     return this.read == true;
-//   }
-// }
+titleInput.addEventListener('input', (event) => {
+  if (titleInput.validity.valid) {
+    spanError.textContent = "";
+    spanError.className = "span error";
+  } else {
+    showError();
+  }
+});
+
+
 
 addBook.addEventListener('click', function() {
   document.querySelector('.bg-modal').style.display = 'flex';
@@ -51,6 +55,38 @@ addBook.addEventListener('click', function() {
   pagesInput.value = '';
 
 });
+
+const getSpan = (input) => {
+  const spans = document.querySelectorAll('span');
+  let span = '';
+  if (input.name == 'title') {
+    span = spans[0];
+  } else if (input.name == 'author') {
+    span = spans[1];
+  } else if (input.name == 'pages') {
+    span = spans[2];
+  }
+  return span;
+}
+
+const checkPages = (input) => {
+  const number = input.value;
+  if (!isNaN(number)) {
+    return true;
+  }
+  return false;
+}
+
+const showError = (input) => {
+  let span = getSpan(input);
+  if (input.validity.valueMissing) {
+    if (input.name == 'pages') {
+      span.textContent = `Please enter a number`;
+    } else {
+        span.textContent = `Please enter a ${input.name}`;
+    }
+  } 
+}
 
 closepopup.addEventListener('click', function() {
   document.querySelector('.bg-modal').style.display = 'none';
@@ -74,7 +110,7 @@ let displayBook = function() {
 
     textTitle.innerHTML = myLibrary[i].title;
     textAuthor.innerHTML = myLibrary[i].author;
-    textPages.innerHTML = myLibrary[i].numPages;
+    textPages.innerHTML = `${myLibrary[i].numPages} Pages`;
     buttonRead.innerHTML = myLibrary[i].read;
     buttonRemove.innerHTML = 'Remove';
 
@@ -132,4 +168,20 @@ let takeInfo = () => {
   displayBook();
 }
 
-btnAdd.addEventListener('click', takeInfo);
+btnAdd.addEventListener('click', function() {
+  if (!titleInput.validity.valid) {
+    showError(titleInput);
+    return;
+  } else if (!authorInput.validity.valid) {
+    showError(authorInput);
+    return;
+  } else if (!pagesInput.validity.valid) {
+    showError(pagesInput);
+    return;
+  } else if (!checkPages(pagesInput)) {
+    let span = getSpan(pagesInput);
+    span.textContent = 'Please enter a valid number';
+    return;
+  }
+  takeInfo();
+});
